@@ -23,6 +23,9 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
     height: 40
+  },
+  loginButton: {
+    color: 'red',
   }
 });
 
@@ -107,7 +110,6 @@ class Login extends Component {
       <Button
         onPress={this._onLogin}
         title='Login'
-        color="#841584"
       />
     )
   }
