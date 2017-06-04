@@ -4,7 +4,7 @@ import {
   Text,
   View,
   TextInput,
-  Button
+  TouchableOpacity
 } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -31,14 +31,55 @@ const styles = StyleSheet.create({
 
 class Subscribe extends Component{
   constructor(props){
-    super(props)
+    super(props);
+    this._onPressOneTime = this._onPressOneTime.bind(this);
+    this._renderOneTimeButton = this._renderOneTimeButton.bind(this);
+
+    this._onPressSubscription = this._onPressSubscription.bind(this);
+    this._renderSubscriptionButton = this._renderSubscriptionButton.bind(this);
   }
+
+  _onPressOneTime() {
+
+  }
+
+  _renderOneTimeButton() {
+    const oneTimePrompt = 'Send one fact';
+    return (
+      <TouchableOpacity 
+        onPress={this._onPressOneTime}
+      >
+        <Text>
+          {oneTimePrompt}
+        </Text>
+      </TouchableOpacity>
+    )
+  }
+
+  _onPressSubscription() {
+
+  }
+
+  _renderSubscriptionButton() {
+    const subscriptionPrompt = 'Subscribe for multiple facts';
+    return (
+      <TouchableOpacity 
+        onPress={this._onPressOneTime}
+      >
+        <Text>
+          {subscriptionPrompt}
+        </Text>
+      </TouchableOpacity>
+    )
+  }
+
   render() {
+    const renderOneTime = this._renderOneTimeButton();
+    const renderSubscription = this._renderSubscriptionButton();
     return (
       <View style={styles.container}>
-        <Text>
-          'Lol'
-        </Text>
+        {renderOneTime}
+        {renderSubscription}
       </View>
     )
   }
