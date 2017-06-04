@@ -7,6 +7,7 @@ import {
   Button
 } from 'react-native';
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -23,6 +24,9 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
     height: 40
+  },
+  loginButton: {
+    color: 'red',
   }
 });
 
@@ -60,7 +64,7 @@ class Login extends Component {
     }
   */
   _renderPrompt() {
-    let prompt = 'Please Login';
+    let prompt = 'Welcome to DogFacts!';
     return (
       <Text style={styles.prompt}>
         {prompt}
@@ -107,13 +111,14 @@ class Login extends Component {
       <Button
         onPress={this._onLogin}
         title='Login'
-        color="#841584"
       />
     )
   }
 
   _onLogin() {
-
+    this.props.navigator.push({
+      id: 'Subscribe'
+    })
   }
 
   render() {
