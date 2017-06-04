@@ -34,7 +34,7 @@ export default class DogFacts extends Component {
     return (
       <NavigationExperimental.Navigator
         initialRoute={{
-          id: 'Login'
+          id: 'Subscribe'
         }}
         renderScene={
           this.navigatorRenderScene
