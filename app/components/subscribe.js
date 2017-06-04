@@ -37,7 +37,7 @@ class Subscribe extends Component{
     return (
       <View style={styles.container}>
         <Text>
-          Lol
+          'Lol'
         </Text>
       </View>
     )
