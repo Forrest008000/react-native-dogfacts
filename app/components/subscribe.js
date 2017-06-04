@@ -31,9 +31,16 @@ const styles = StyleSheet.create({
 
 class Subscribe extends Component{
   constructor(props){
-    super(props)
+    super(props);
+    this._oneTimeFact = this._oneTimeFact.bind(this);
   }
+
+  _oneTimeFact() {
+    
+  }
+
   render() {
+    console.log('state', this.propsd);
     return (
       <View style={styles.container}>
         <Text>
