@@ -117,11 +117,16 @@ class Login extends Component {
 
   _onLogin() {
     this.props.navigator.push({
-      id: 'Subscribe'
+      id: 'Subscribe',
+      data: {
+        ...this.state
+      }
     })
   }
 
   render() {
+    //debugger;
+    console.log('state', ...this);
     const renderPrompt = this._renderPrompt();
     const renderUsernameInput = this._renderUsernameInput();
     const renderPasswordInput = this._renderPasswordInput();
