@@ -91,14 +91,14 @@ class Subscribe extends Component {
 
   _handleCreateCardToken() {
     let formBody = [];
+
+    //Or JSON.stringify lol. Originally had different design in mind. Whatever.
     for (let property in this.state.cardDetails) {
-      let encodedKey = encodeURIComponent(property);
-      let encodedValue = encodeURIComponent(this.state.cardDetails[property]);
-      formBody.push(encodedKey + "=" + encodedValue);
+      let key = encodeURIComponent(property);
+      let val = encodeURIComponent(this.state.cardDetails[property]);
+      formBody.push(key + "=" + val);
     }
     formBody = formBody.join("&");
-
-    debugger;
 
     return (
       fetch(this.state.stripe.url, {
@@ -109,10 +109,31 @@ class Subscribe extends Component {
           'Authorization': 'Bearer ' + this.state.stripe.secretKey
         },
         body: formBody
-      }).then(
-        function(res) {
-        }
-      )
+      }).then(function(res) {
+          let stripeApiResponse = res;
+          
+          //console.log('Response: ', stripeApiResponse.json())
+          return res.json();
+          //return Promise.resolve(stripeApiResponse.json());
+          //debugger;
+      }).then(function(data) {
+        console.log('DATA ', data);
+        return (
+          fetch('https://dogfacts-558f8.firebaseio.com/', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+              body: JSON.stringify({token: data.id})
+          }).then(function(res) {
+            return res.json();
+          }).then(function(confirmationResponse){
+            console.log('confirmed response from firebase', confirmationResponse);
+            debugger;
+          })
+        );
+      })
     );
   }
 
