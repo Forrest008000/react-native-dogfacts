@@ -126,7 +126,7 @@ class Login extends Component {
 
   render() {
     //debugger;
-    console.log('state', ...this);
+    //console.log('state', ...this);
     const renderPrompt = this._renderPrompt();
     const renderUsernameInput = this._renderUsernameInput();
     const renderPasswordInput = this._renderPasswordInput();
