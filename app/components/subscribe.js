@@ -35,7 +35,7 @@ class Subscribe extends Component {
     this.state = {
       stripe: {
         url: 'https://api.stripe.com/v1/tokens?',
-        secretKey: 'sk_test_6H3ofPJjlfkybRNYLchsyYYj'
+        secretKey: 'pk_test_YY64uLJXjWb0ilpklxOoBWhX'
       },
       cardDetails: {
         "card[number]": '4242424242424242',
@@ -92,6 +92,8 @@ class Subscribe extends Component {
   _handleCreateCardToken() {
     let formBody = [];
 
+    console.log('props, ',this.props);
+
     //Or JSON.stringify lol. Originally had different design in mind. Whatever.
     for (let property in this.state.cardDetails) {
       let key = encodeURIComponent(property);
@@ -123,9 +125,12 @@ class Subscribe extends Component {
             method: 'POST',
             headers: {
               'Accept': 'application/json',
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'Authorization': ''
             },
-              body: JSON.stringify({token: data.id})
+              body: JSON.stringify({
+                token: data.id,
+              })
           }).then(function(res) {
             return res.json();
           }).then(function(confirmationResponse){
